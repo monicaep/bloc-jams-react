@@ -44,6 +44,9 @@ class Album extends Component {
 
   handleMouseEnter(song) {
     this.setState({ isHovering: song });
+    if (!this.state.isPlaying) {
+      this.setState({ currentSong: song});
+    }
   }
 
   handleMouseLeave(song) {
