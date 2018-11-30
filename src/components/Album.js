@@ -102,8 +102,6 @@ class Album extends Component {
       return(<ion-icon name="pause"></ion-icon>);
     } else if (this.state.isHovering === song) {
         return(<ion-icon name="play"></ion-icon>);
-    } else if (this.state.currentSong === song && !this.state.isPlaying) {
-        return(<ion-icon name="play"></ion-icon>);
     } else {
         return (index + 1);
     }
