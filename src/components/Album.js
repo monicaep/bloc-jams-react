@@ -15,6 +15,7 @@ class Album extends Component {
       duration: album.songs[0].duration,
       isPlaying: false,
       isHovering: null,
+      volume: 80,
     };
     this.audioElement = document.createElement('audio');
     this.audioElement.src = album.songs[0].audioSrc;
@@ -37,16 +38,21 @@ class Album extends Component {
       },
       durationchange: e => {
         this.setState({ duration: this.audioElement.duration });
+      },
+      volumechange: e => {
+        this.setState({volume: this.audioElement.volume });
       }
     };
     this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
     this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+    this.audioElement.addEventListener('volumechange', this.eventListeners.volumechange);
   }
 
   componentWillUnmount() {
     this.audioElement.src = null;
     this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
     this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
+    this.audioElement.removeEventListener('volumechnage', this.eventListeners.volumechange);
   }
 
   setSong(song) {
@@ -84,6 +90,23 @@ class Album extends Component {
     const newTime = this.audioElement.duration * e.target.value;
     this.audioElement.currentTime = newTime;
     this.setState({ currentTime: newTime});
+  }
+
+  formatTime(seconds) {
+    const remainderSecs = Math.floor(seconds % 60);
+    if (isNaN(seconds)) {
+      return "-:--";
+    } else if (remainderSecs < 10) {
+      return Math.floor(seconds / 60) + ":0" + remainderSecs;
+    } else {
+      return Math.floor(seconds/60) + ":" + remainderSecs;
+    }
+  }
+
+  handleVolumeChange(e) {
+    const newVolume = e.target.value;
+    this.audioElement.volume = newVolume;
+    this.setState({ volume: newVolume });
   }
 
   handleMouseEnter(song) {
@@ -149,6 +172,8 @@ class Album extends Component {
           handlePrevClick={() => this.handlePrevClick()}
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
+          formatTime={(seconds) => this.formatTime(seconds)}
+          handleVolumeChange={(e) => this.handleVolumeChange(e)}
         />
       </section>
     );
