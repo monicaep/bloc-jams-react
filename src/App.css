@@ -30,3 +30,37 @@
     transform: rotate(360deg);
   }
 }
+nav {
+  color: #424242;
+  list-style-type: diamond;
+}
+
+header {
+  color: #006064;
+  background: #fbe9e7;
+  float: left;
+  height: auto;
+}
+
+.hero-title {
+  font-size: 50px;
+  background: #0097a7;
+  color: white;
+  text-emphasis: dot;
+  text-shadow: color;
+}
+
+.selling-points {
+  background: #e0f7fa;
+  padding: 20px;
+  float: right;
+
+}
+
+.point-title {
+  color: black;
+}
+
+.point-description {
+  color: #9e9e9e;
+}
