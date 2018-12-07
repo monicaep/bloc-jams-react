@@ -37,7 +37,7 @@ nav {
 
 header {
   color: #006064;
-  background: #fbe9e7;
+  background: #ff7043;
   float: left;
   height: auto;
 }
@@ -62,5 +62,17 @@ header {
 }
 
 .point-description {
+  color: #9e9e9e;
+}
+
+#song-list {
+  float: right;
+}
+
+#release-info {
+  color: #9e9e9e;
+}
+
+#song-duration-column {
   color: #9e9e9e;
 }
